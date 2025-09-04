@@ -1,0 +1,36 @@
+---
+const { title = "Josh Elliott", description = "Software developer — projects, articles, and experiments." } = Astro.props;
+import "../styles/global.css";
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <header class="border-b border-neutral-800">
+      <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+        <a href="/" class="font-semibold tracking-tight text-lg">Josh Elliott</a>
+        <nav class="flex gap-4 text-sm">
+          <a href="/professional/">Professional</a>
+          <a href="/projects/">Projects</a>
+          <a href="/blog/">Blog</a>
+          <a href="/tech/">Tech</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="flex-1 max-w-5xl mx-auto w-full px-4 py-10">
+      <slot />
+    </main>
+
+    <footer class="border-t border-neutral-800">
+      <div class="max-w-5xl mx-auto px-4 py-6 text-xs text-neutral-400">
+        © {new Date().getFullYear()} Josh Elliott — Built with Astro
+      </div>
+    </footer>
+  </body>
+</html>

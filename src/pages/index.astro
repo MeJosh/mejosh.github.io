@@ -1,16 +1,48 @@
 ---
-
+import BaseLayout from "@layouts/BaseLayout.astro";
+const cards = [
+  {
+    href: "/professional/",
+    title: "Professional Documents",
+    desc: "Resume, CV, and supporting materials."
+  },
+  {
+    href: "/projects/",
+    title: "Projects & Demos",
+    desc: "Live web apps, prototypes, and experiments."
+  },
+  {
+    href: "/blog/",
+    title: "Blog",
+    desc: "Personal posts, thoughts, and updates."
+  },
+  {
+    href: "/tech/",
+    title: "Technical Write-ups",
+    desc: "In-depth articles and how-tos."
+  },
+  {
+    href: "/contact/",
+    title: "Contact",
+    desc: "Ways to reach me."
+  }
+];
 ---
+<BaseLayout title="Josh Elliott — Personal Site">
+  <section class="mb-10">
+    <h1 class="text-3xl md:text-4xl font-semibold mb-4">Hi, I'm Josh.</h1>
+    <p class="text-neutral-300 max-w-2xl">
+      I build modern web applications and data-driven interfaces. Explore my projects, read technical write-ups,
+      or grab my resume.
+    </p>
+  </section>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {cards.map((c) => (
+      <a href={c.href} class="block border border-neutral-800 rounded-xl p-5 hover:border-neutral-700 transition">
+        <h2 class="text-lg font-medium">{c.title}</h2>
+        <p class="text-sm text-neutral-400 mt-1">{c.desc}</p>
+      </a>
+    ))}
+  </section>
+</BaseLayout>
