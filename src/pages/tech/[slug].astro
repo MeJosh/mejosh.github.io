@@ -1,0 +1,28 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("tech", ({ data }) => !data.draft);
+  return articles.map((a) => ({
+    params: { slug: a.slug },
+    props: { article: a },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+
+const date =
+  article.data.date instanceof Date ? article.data.date : new Date(article.data.date);
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+<BaseLayout title={`${article.data.title} — Tech`}>
+  <article class="max-w-3xl">
+    <h1 class="text-3xl font-semibold">{article.data.title}</h1>
+    <p class="text-sm text-neutral-500 mt-1">{fmt(date)}</p>
+    <div class="mt-6 leading-7 space-y-4">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

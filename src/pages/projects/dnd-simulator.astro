@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import CombatSimulator from "@components/projects/dnd-simulator/CombatSimulator.vue";
+---
+
+<BaseLayout title="D20 Combat Simulator — Josh Elliott">
+  <div class="max-w-6xl mx-auto">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold mb-4">D20 Combat Simulator</h1>
+      <p class="text-lg text-gray-600 mb-4">
+        A D&D Combat System Simulation Tool that analyzes combat effectiveness through statistical modeling.
+      </p>
+      <p class="text-gray-600">
+        Configure character stats and weapon damage to run thousands of combat simulations. 
+        View statistical results including hit rates, average damage, and combat round distributions.
+      </p>
+    </div>
+
+    <CombatSimulator client:load />
+
+    <div class="mt-12 bg-gray-50 p-6 rounded-lg">
+      <h2 class="text-xl font-semibold mb-4">About This Tool</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h3 class="font-semibold mb-2">Features</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>• Configurable character stats (AC, HP, Attack Bonus)</li>
+            <li>• Flexible damage dice notation (e.g., 1d8+3, 2d6+2)</li>
+            <li>• Monte Carlo simulation with customizable iterations</li>
+            <li>• Interactive D3.js visualization of results</li>
+            <li>• Real-time statistical analysis</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2">Use Cases</h3>
+          <ul class="text-sm text-gray-600 space-y-1">
+            <li>• Character build optimization</li>
+            <li>• Weapon effectiveness comparison</li>
+            <li>• Combat encounter balancing</li>
+            <li>• Understanding D20 system mechanics</li>
+            <li>• Educational probability demonstrations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

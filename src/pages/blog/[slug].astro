@@ -1,0 +1,29 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  // Only build non-draft posts
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const date =
+  post.data.date instanceof Date ? post.data.date : new Date(post.data.date);
+const fmt = (d: Date) => d.toISOString().slice(0, 10);
+---
+<BaseLayout title={`${post.data.title} — Blog`}>
+  <article class="max-w-3xl">
+    <h1 class="text-3xl font-semibold">{post.data.title}</h1>
+    <p class="text-sm text-neutral-500 mt-1">{fmt(date)}</p>
+    <div class="mt-6 leading-7 space-y-4">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>
