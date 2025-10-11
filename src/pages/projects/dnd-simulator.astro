@@ -3,42 +3,69 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import CombatSimulator from "@components/projects/dnd-simulator/CombatSimulator.vue";
 ---
 
-<BaseLayout title="D20 Combat Simulator — Josh Elliott">
+<BaseLayout title="D20 Combat Statistics — Josh Elliott">
   <div class="max-w-6xl mx-auto">
     <div class="mb-8">
-      <h1 class="text-3xl font-bold mb-4">D20 Combat Simulator</h1>
-      <p class="text-lg text-gray-600 mb-4">
-        A D&D Combat System Simulation Tool that analyzes combat effectiveness through statistical modeling.
+      <h1 class="text-3xl font-bold mb-4">D20 Combat Statistics</h1>
+      <p class="text-lg text-neutral-300 mb-4">
+        Advanced D&D combat analysis using Monte Carlo simulation with accurate dice rolling,
+        critical hit mechanics, and full D&D rule compliance.
       </p>
-      <p class="text-gray-600">
-        Configure character stats and weapon damage to run thousands of combat simulations. 
-        View statistical results including hit rates, average damage, and combat round distributions.
+      <p class="text-neutral-400">
+        This tool simulates 100,000 combats to provide precise statistical distributions for "time to kill" scenarios.
+        Each simulation rolls actual dice and follows complete D&D combat rules, including natural 1s, natural 20s,
+        and critical damage with doubled dice.
       </p>
     </div>
 
     <CombatSimulator client:load />
 
-    <div class="mt-12 bg-gray-50 p-6 rounded-lg">
-      <h2 class="text-xl font-semibold mb-4">About This Tool</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <h3 class="font-semibold mb-2">Features</h3>
-          <ul class="text-sm text-gray-600 space-y-1">
-            <li>• Configurable character stats (AC, HP, Attack Bonus)</li>
-            <li>• Flexible damage dice notation (e.g., 1d8+3, 2d6+2)</li>
-            <li>• Monte Carlo simulation with customizable iterations</li>
-            <li>• Interactive D3.js visualization of results</li>
-            <li>• Real-time statistical analysis</li>
+    <div class="mt-12 space-y-8">
+      <div class="bg-neutral-800/50 p-6 rounded-lg border border-neutral-700">
+        <h2 class="text-xl font-semibold mb-4">The Mathematics</h2>
+        <div class="prose prose-invert max-w-none">
+          <p class="text-neutral-300 mb-4">
+            This tool uses Monte Carlo simulation to model D&D combat with complete accuracy. Each analysis runs 100,000
+            simulated combats, rolling actual dice and following all D&D rules precisely.
+          </p>
+
+          <h3 class="text-lg font-semibold text-white mt-6 mb-3">The Simulation</h3>
+          <ul class="text-neutral-300 space-y-2 mb-4">
+            <li>• Each attack rolls a d20 and adds your attack bonus vs. target AC</li>
+            <li>• Natural 1s always miss, Natural 20s always hit (when enabled)</li>
+            <li>• Critical hits (Natural 20s) roll damage dice twice plus modifiers</li>
+            <li>• Damage is rolled with actual dice (1d8, 2d6+2, etc.) not averages</li>
+            <li>• Combat continues until target reaches 0 HP or below</li>
+          </ul>
+
+          <h3 class="text-lg font-semibold text-white mt-6 mb-3">Why Monte Carlo?</h3>
+          <ul class="text-neutral-300 space-y-2">
+            <li>• <strong>Accurate dice rolling:</strong> Simulates actual randomness, not averages</li>
+            <li>• <strong>Complex interactions:</strong> Handles critical hits, variable damage, and edge cases</li>
+            <li>• <strong>Realistic results:</strong> Accounts for all D&D mechanics exactly as played</li>
+            <li>• <strong>High precision:</strong> 100,000 trials provide statistically robust results</li>
           </ul>
         </div>
-        <div>
-          <h3 class="font-semibold mb-2">Use Cases</h3>
-          <ul class="text-sm text-gray-600 space-y-1">
-            <li>• Character build optimization</li>
-            <li>• Weapon effectiveness comparison</li>
-            <li>• Combat encounter balancing</li>
-            <li>• Understanding D20 system mechanics</li>
-            <li>• Educational probability demonstrations</li>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-neutral-800/50 p-6 rounded-lg border border-neutral-700">
+          <h3 class="font-semibold mb-3">Why This Matters</h3>
+          <ul class="text-sm text-neutral-300 space-y-2">
+            <li>• <strong>Character Optimization:</strong> Compare different build choices mathematically</li>
+            <li>• <strong>Encounter Design:</strong> Balance combat difficulty with precise probability</li>
+            <li>• <strong>Understanding Variance:</strong> See how random the d20 system really is</li>
+            <li>• <strong>No Simulation Needed:</strong> Get exact answers instantly</li>
+          </ul>
+        </div>
+
+        <div class="bg-neutral-800/50 p-6 rounded-lg border border-neutral-700">
+          <h3 class="font-semibold mb-3">Technical Features</h3>
+          <ul class="text-sm text-neutral-300 space-y-2">
+            <li>• <strong>Exact PMF:</strong> Precise probability mass function calculation</li>
+            <li>• <strong>Natural 1/20 Rules:</strong> Enforces 5% minimum miss/hit rates</li>
+            <li>• <strong>Real-time Updates:</strong> Instant recalculation as you adjust parameters</li>
+            <li>• <strong>Interactive Visualization:</strong> D3.js charts of the probability distribution</li>
           </ul>
         </div>
       </div>
